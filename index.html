@@ -1014,18 +1014,32 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.js"></script>
     <script>
       const pad = (n) => String(n).padStart(2, '0');
-      const total = document.querySelectorAll('.why-swiper .swiper-slide').length;
+      const whyWrapper = document.querySelector('.why-swiper .swiper-wrapper');
+      const whyOriginals = [...whyWrapper.children];
+      const total = whyOriginals.length; // real slides count (clone se pehle)
       const cur = document.getElementById('whyCur');
       const fill = document.getElementById('whyFill');
       document.getElementById('whyTot').textContent = pad(total);
+
+      /* loop ke liye enough slides: ek baar clone */
+      whyOriginals.forEach((el) => whyWrapper.appendChild(el.cloneNode(true)));
+
+      function update(s) {
+        const i = s.realIndex % total; // clones ki wajah se modulo
+        cur.textContent = pad(i + 1);
+        fill.style.width = ((i + 1) / total) * 100 + '%';
+      }
 
       const whySwiper = new Swiper('.why-swiper', {
         slidesPerView: 'auto',
         spaceBetween: 16,
         loop: true,
-        loopAdditionalSlides: 3,
+        loopAdditionalSlides: total,
         speed: 800,
         grabCursor: true,
+        observer: true,
+        observeParents: true,
+        autoplay: { delay: 3500, disableOnInteraction: false, pauseOnMouseEnter: true },
         navigation: { nextEl: '.why-arrow.next', prevEl: '.why-arrow.prev' },
         on: {
           init(s) {
@@ -1036,12 +1050,6 @@
           },
         },
       });
-
-      function update(s) {
-        const i = s.realIndex;
-        cur.textContent = pad(i + 1);
-        fill.style.width = ((i + 1) / total) * 100 + '%';
-      }
     </script>
     <script>
       /* Testimonial swiper : infinite + autoplay */
