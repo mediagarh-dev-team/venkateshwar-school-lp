@@ -1419,8 +1419,8 @@ body {
   position: relative;
   overflow: hidden;
   background: var(--navy);
-  height: 1010vh;
-  min-height: 890px;
+  height: 100vh;
+  min-height: 814px;
   max-height: 1080px;
   --hp: clamp(24px, 5.9vw, 140px);
 }
