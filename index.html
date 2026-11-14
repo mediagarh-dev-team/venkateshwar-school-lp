@@ -93,22 +93,31 @@
         <div class="swiper hero-swiper">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
-              <img
-                class="hero-slide-img"
-                src="images/slider-img-1-hero.webp"
-                alt="Two smiling students giving a thumbs up"
-                fetchpriority="high"
-              />
+              <picture>
+                <source media="(max-width: 991px)" srcset="images/mobile-img-1.webp" />
+                <img
+                  class="hero-slide-img"
+                  src="images/slider-img-1-hero.webp"
+                  alt="Two smiling students giving a thumbs up"
+                  fetchpriority="high"
+                />
+              </picture>
             </div>
             <div class="swiper-slide">
-              <img
-                class="hero-slide-img"
-                src="images/slider-img-2-hero.webp"
-                alt="Students learning in the classroom"
-              />
+              <picture>
+                <source media="(max-width: 991px)" srcset="images/mobile-img-2.webp" />
+                <img
+                  class="hero-slide-img"
+                  src="images/slider-img-2-hero.webp"
+                  alt="Students learning in the classroom"
+                />
+              </picture>
             </div>
             <div class="swiper-slide">
-              <img class="hero-slide-img" src="images/slider-img-3-hero.webp" alt="Students on the school campus" />
+              <picture>
+                <source media="(max-width: 991px)" srcset="images/mobile-img-3.webp" />
+                <img class="hero-slide-img" src="images/slider-img-3-hero.webp" alt="Students on the school campus" />
+              </picture>
             </div>
           </div>
         </div>
@@ -144,73 +153,77 @@
           <!-- fixed content (never changes) -->
           <div class="hero-fixed">
             <span class="hero-adm">Admissions Open 2027-28</span>
-            <span class="hero-badge"><i></i>Best CBSE Schools in Gurugram</span>
+            <h1 class="hero-badge"><i></i>Best CBSE Schools in Gurugram</h1>
             <p class="hero-para">
               A progressive CBSE school in Gurugram nurturing future-ready learners through quality academics, Robotics
               &amp; AI, sports, creative learning, and holistic development from Pre-Nursery to Class 12.
             </p>
           </div>
-
-          <!-- enquiry form : fixed side panel on desktop, inline block on mobile -->
-          <aside class="enq" id="enq" aria-label="Admission enquiry">
-            <button type="button" class="enq-tab" id="enqTab" aria-expanded="false" aria-controls="enqPanel">
-              Admission Enquiry
-            </button>
-            <div class="enq-panel" id="enqPanel">
-              <h2 class="enq-title">Admission Enquiry</h2>
-              <p class="enq-sub">Admissions open for 2027-28. We will call you within 24 hours.</p>
-              <form class="enq-form" id="enqForm">
-                <label class="visually-hidden" for="eName">Parent's name</label>
-                <input
-                  id="eName"
-                  name="name"
-                  type="text"
-                  class="enq-input"
-                  placeholder="Parent's name"
-                  autocomplete="name"
-                  required
-                />
-                <label class="visually-hidden" for="ePhone">Mobile number</label>
-                <input
-                  id="ePhone"
-                  name="phone"
-                  type="tel"
-                  class="enq-input"
-                  placeholder="Mobile number"
-                  inputmode="numeric"
-                  pattern="[0-9]{10}"
-                  maxlength="10"
-                  autocomplete="tel-national"
-                  required
-                />
-                <label class="visually-hidden" for="eEmail">Email</label>
-                <input
-                  id="eEmail"
-                  name="email"
-                  type="email"
-                  class="enq-input"
-                  placeholder="Email (optional)"
-                  autocomplete="email"
-                />
-                <label class="visually-hidden" for="eClass">Class applying for</label>
-                <select id="eClass" name="class" class="enq-input" required>
-                  <option value="" selected disabled>Class applying for</option>
-                  <option>Pre-Nursery</option>
-                  <option>Nursery</option>
-                  <option>KG</option>
-                  <option>Class I–V</option>
-                  <option>Class VI–VIII</option>
-                  <option>Class IX–X</option>
-                  <option>Class XI–XII</option>
-                </select>
-                <button type="submit" class="btn btn-lp enq-submit">
-                  Submit Enquiry <i class="bi bi-arrow-right"></i>
-                </button>
-                <p class="enq-msg" id="enqMsg" hidden>Thank you! Our team will call you shortly.</p>
-              </form>
-            </div>
-          </aside>
         </div>
+
+        <!-- enquiry form : fixed side panel on desktop, navy-bg block on mobile (outside hero-stage) -->
+      </div>
+
+      <!-- enquiry form -->
+      <div class="px-3 px-lg-0 pb-4 pb-lg-0">
+        <aside class="enq" id="enq" aria-label="Admission enquiry">
+          <button type="button" class="enq-tab" id="enqTab" aria-expanded="false" aria-controls="enqPanel">
+            Admission Enquiry
+          </button>
+          <div class="enq-panel" id="enqPanel">
+            <h2 class="enq-title">Admission Enquiry</h2>
+            <p class="enq-sub">Admissions open for 2027-28. We will call you within 24 hours.</p>
+            <form class="enq-form" id="enqForm">
+              <label class="visually-hidden" for="eName">Parent's name</label>
+              <input
+                id="eName"
+                name="name"
+                type="text"
+                class="enq-input"
+                placeholder="Parent's name"
+                autocomplete="name"
+                required
+              />
+              <label class="visually-hidden" for="ePhone">Mobile number</label>
+              <input
+                id="ePhone"
+                name="phone"
+                type="tel"
+                class="enq-input"
+                placeholder="Mobile number"
+                inputmode="numeric"
+                pattern="[0-9]{10}"
+                maxlength="10"
+                autocomplete="tel-national"
+                required
+              />
+              <label class="visually-hidden" for="eEmail">Email</label>
+              <input
+                id="eEmail"
+                name="email"
+                type="email"
+                class="enq-input"
+                placeholder="Email (optional)"
+                autocomplete="email"
+              />
+              <label class="visually-hidden" for="eClass">Class applying for</label>
+              <select id="eClass" name="class" class="enq-input" required>
+                <option value="" selected disabled>Class applying for</option>
+                <option>Pre-Nursery</option>
+                <option>Nursery</option>
+                <option>KG</option>
+                <option>Class I–V</option>
+                <option>Class VI–VIII</option>
+                <option>Class IX–X</option>
+                <option>Class XI–XII</option>
+              </select>
+              <button type="submit" class="btn btn-lp enq-submit">
+                Submit Enquiry <i class="bi bi-arrow-right"></i>
+              </button>
+              <p class="enq-msg" id="enqMsg" hidden>Thank you! Our team will call you shortly.</p>
+            </form>
+          </div>
+        </aside>
       </div>
 
       <!-- TVS at a glance bar -->
@@ -244,45 +257,7 @@
       </div>
     </section>
 
-    <!-- campus tour video modal -->
-    <div class="modal fade" id="tourModal" tabindex="-1" aria-label="TVS campus tour" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content tour-modal">
-          <button type="button" class="tour-close" data-bs-dismiss="modal" aria-label="Close">
-            <i class="bi bi-x-lg"></i>
-          </button>
-          <div class="ratio ratio-16x9">
-            <iframe
-              title="TVS campus tour"
-              data-src="https://www.youtube.com/embed/REPLACE_VIDEO_ID?autoplay=1&rel=0"
-              allow="autoplay; encrypted-media; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- campus tour video modal -->
-    <div class="modal fade" id="tourModal" tabindex="-1" aria-label="TVS campus tour" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content tour-modal">
-          <button type="button" class="tour-close" data-bs-dismiss="modal" aria-label="Close">
-            <i class="bi bi-x-lg"></i>
-          </button>
-          <div class="ratio ratio-16x9">
-            <iframe
-              title="TVS campus tour"
-              data-src="https://www.youtube.com/embed/REPLACE_VIDEO_ID?autoplay=1&rel=0"
-              allow="autoplay; encrypted-media; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <section class="why-sec">
+    <section class="why-sec overflow-hidden">
       <div class="lp-container">
         <div class="row g-0 why-row">
           <div class="col-12 why-text-col">
@@ -291,7 +266,7 @@
               More than marks.<br />A school that shapes<br class="d-none d-lg-block" />
               the whole child.
             </h2>
-            <a href="#enquire" class="btn btn-lp">Enquire Now <i class="bi bi-arrow-right"></i></a>
+            <a href="#enquire" class="btn btn-lp" data-open-enq>Enquire Now <i class="bi bi-arrow-right"></i></a>
           </div>
 
           <div class="col-12 why-slider-col">
@@ -399,7 +374,7 @@
       </div>
     </section>
 
-    <section class="campus-sec">
+    <section class="campus-sec overflow-hidden">
       <div class="campus-head">
         <span class="eyebrow">One campus, Pre-Nursery to XII</span>
         <h2 class="campus-title">Start here. Grow here. <span>Graduate here.</span></h2>
@@ -468,7 +443,7 @@
       </div>
     </section>
 
-    <section class="fx-sec">
+    <section class="fx-sec overflow-hidden">
       <div class="lp-container">
         <div class="sec-head">
           <span class="eyebrow center">Campus, Safety &amp; Beyond Books</span>
@@ -589,7 +564,9 @@
               <div class="fx-cta">
                 <img class="fx-cta-bg" src="images/cell-card-bg.webp" alt="" />
                 <img class="fx-star ico-ph" src="images/Sparkle.svg" alt="" />
-                <a href="#enquire" class="btn btn-lp">Book a Campus Visit <i class="bi bi-arrow-right"></i></a>
+                <a href="#enquire" class="btn btn-lp" data-open-enq
+                  >Book a Campus Visit <i class="bi bi-arrow-right"></i
+                ></a>
               </div>
             </div>
           </div>
@@ -597,7 +574,7 @@
       </div>
     </section>
 
-    <section class="tm-sec">
+    <section class="tm-sec overflow-hidden">
       <div class="lp-container">
         <div class="sec-head">
           <span class="eyebrow center dark">What parents say</span>
@@ -668,7 +645,7 @@
       </div>
     </section>
 
-    <section class="adm-sec" id="admission">
+    <section class="adm-sec overflow-hidden" id="admission">
       <div class="lp-container">
         <div class="row align-items-center gy-5">
           <!-- step diagram -->
@@ -729,8 +706,8 @@
                 Sibling Benefit: Up to 50% off tuition fees.
               </p>
               <div class="adm-btns">
-                <a href="#enquire" class="btn btn-lp btn-xl">Get Fee Structure</a>
-                <a href="#enquire" class="btn btn-lp btn-lp-white btn-xl">Book a Campus Visit</a>
+                <a href="#enquire" class="btn btn-lp btn-xl" data-open-enq>Get Fee Structure</a>
+                <a href="#enquire" class="btn btn-lp btn-lp-white btn-xl" data-open-enq>Book a Campus Visit</a>
               </div>
             </div>
           </div>
@@ -738,7 +715,7 @@
       </div>
     </section>
 
-    <section class="faq-sec" id="faq">
+    <section class="faq-sec overflow-hidden" id="faq">
       <div class="lp-container">
         <div class="sec-head">
           <span class="eyebrow stack">FAQs</span>
@@ -869,7 +846,7 @@
       </div>
     </section>
 
-    <section class="cta-sec" id="enquire">
+    <section class="cta-sec overflow-hidden" id="enquire">
       <div class="lp-container">
         <div class="cta-card">
           <!-- photos (decorative, rotated) -->
@@ -902,7 +879,9 @@
             </p>
 
             <div class="cta-btns">
-              <a href="#enquire" class="btn btn-navy">Book a Free Campus Visit <i class="bi bi-arrow-right"></i></a>
+              <a href="#enquire" class="btn btn-navy" data-open-enq
+                >Book a Free Campus Visit <i class="bi bi-arrow-right"></i
+              ></a>
               <a href="tel:+918448087080" class="btn btn-ghost"><i class="bi bi-telephone"></i> Call 844 808 7080</a>
             </div>
 
@@ -921,7 +900,7 @@
       </div>
     </section>
 
-    <footer class="ft">
+    <footer class="ft overflow-hidden">
       <div class="lp-container">
         <div class="row gy-5 gx-lg-4 ft-row">
           <!-- logo -->
@@ -962,8 +941,8 @@
             <div class="ft-block">
               <h3 class="ft-title">Contact Us</h3>
               <div class="ft-btns">
-                <a href="#enquire" class="btn btn-lp btn-ft">Enquire Now</a>
-                <a href="#enquire" class="btn btn-lp btn-ft btn-ft-line">Book a Campus Visit</a>
+                <a href="#enquire" class="btn btn-lp btn-ft" data-open-enq>Enquire Now</a>
+                <a href="#enquire" class="btn btn-lp btn-ft btn-ft-line" data-open-enq>Book a Campus Visit</a>
               </div>
             </div>
           </div>
@@ -1043,7 +1022,7 @@
           speed: 1200,
           rewind: true,
           grabCursor: true,
-          // autoplay: { delay: 6000, disableOnInteraction: false },
+          autoplay: { delay: 6000, disableOnInteraction: false },
           pagination: { el: '.hero-dots', clickable: true, bulletClass: 'hero-dot', bulletActiveClass: 'is-active' },
           on: {
             init(s) {
@@ -1070,6 +1049,24 @@
           panel.inert = desktop.matches && !v;
         }
         tab.addEventListener('click', () => setOpen(!isOpen));
+
+        /* open panel (desktop) or scroll to form (mobile) on any [data-open-enq] button */
+        document.querySelectorAll('[data-open-enq]').forEach((btn) => {
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (desktop.matches) {
+              /* desktop: open the side panel */
+              setOpen(true);
+              panel.querySelector('input, select, textarea, button')?.focus();
+            } else {
+              /* mobile/tablet: scroll to the inline enquiry form */
+              enq.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              setTimeout(() => {
+                panel.querySelector('input, select, textarea, button')?.focus();
+              }, 500);
+            }
+          });
+        });
         new IntersectionObserver(
           ([e]) => {
             if (desktop.matches) setOpen(e.isIntersecting);
@@ -1079,21 +1076,47 @@
         desktop.addEventListener('change', () => setOpen(desktop.matches ? isOpen : false));
         setOpen(false);
 
-        /* form (connect to your backend here) */
+        /* ── Enquiry form → Google Sheet via Apps Script ── */
+        const APPSCRIPT_URL =
+          'https://script.google.com/macros/s/AKfycbxrUD2CHBkBwyDMKIqm7jSrh4i-ko1hJh__mT_-hO6Q7NNfVAYuH8CuYEtcqJeITDkqgg/exec';
+
         const form = document.getElementById('enqForm');
         const msg = document.getElementById('enqMsg');
-        form.addEventListener('submit', (e) => {
-          e.preventDefault();
-          form.reset();
-          msg.hidden = false;
-          setTimeout(() => (msg.hidden = true), 6000);
-        });
+        const submit = form.querySelector('.enq-submit');
 
-        /* video modal : load on open, unload on close */
-        const modalEl = document.getElementById('tourModal');
-        const frame = modalEl.querySelector('iframe');
-        modalEl.addEventListener('show.bs.modal', () => (frame.src = frame.dataset.src));
-        modalEl.addEventListener('hidden.bs.modal', () => (frame.src = ''));
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+
+          const name = form.querySelector('#eName').value.trim();
+          const phone = form.querySelector('#ePhone').value.trim();
+          const email = form.querySelector('#eEmail').value.trim();
+          const cls = form.querySelector('#eClass').value;
+
+          /* loading state */
+          submit.disabled = true;
+          submit.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status"></span>Submitting…';
+
+          try {
+            await fetch(APPSCRIPT_URL, {
+              method: 'POST',
+              mode: 'no-cors' /* Apps Script requires no-cors */,
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                name,
+                email,
+                mobile: phone,
+                class: cls,
+                pageUrl: window.location.href,
+              }),
+            });
+          } catch (_) {
+            /* no-cors fetch always resolves — network errors are silent */
+          }
+
+          /* redirect to thank-you page with URL params */
+          const p = new URLSearchParams({ name, email, mobile: phone });
+          window.location.href = 'thank-you.html?' + p.toString();
+        });
       })();
     </script>
   </body>
