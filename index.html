@@ -1135,13 +1135,18 @@
         desktop.addEventListener('change', () => setOpen(desktop.matches ? isOpen : false));
         setOpen(false);
 
-        /* ── Enquiry form → Google Sheet via Apps Script ── */
-        const APPSCRIPT_URL =
-          'https://script.google.com/macros/s/AKfycbxrUD2CHBkBwyDMKIqm7jSrh4i-ko1hJh__mT_-hO6Q7NNfVAYuH8CuYEtcqJeITDkqgg/exec';
+        /* ── Enquiry form → CRM API ── */
+        const CRM_URL = 'https://crm.mediagarh.com/CRM/api/leads/create';
+        const CRM_KEY = 'b62d20f5cd5e82d3ee1cfe7fc85cccbbe43db37e36830923557c912602afe023';
 
         const form = document.getElementById('enqForm');
         const msg = document.getElementById('enqMsg');
         const submit = form.querySelector('.enq-submit');
+
+        /* ── read UTM params from the current URL ── */
+        function getUtm(key) {
+          return new URLSearchParams(window.location.search).get(key) || '';
+        }
 
         form.addEventListener('submit', async (e) => {
           e.preventDefault();
@@ -1155,21 +1160,56 @@
           submit.disabled = true;
           submit.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status"></span>Submitting…';
 
+          const payload = {
+            form_id: 82,
+            first_name: name,
+            last_name: '',
+            email: email,
+            phone: phone,
+            utm_source: getUtm('utm_source'),
+            utm_medium: getUtm('utm_medium'),
+            utm_campaign: getUtm('utm_campaign'),
+            landing_url: window.location.href,
+            referrer_url: document.referrer || '',
+            custom_fields: {
+              field_field_1795086449116_0gt1p: {
+                label: 'Full Name',
+                type: 'text',
+                value: name,
+                map_to: 'first_name',
+              },
+              field_field_1795086588766_r8ic6: {
+                label: 'Phone Number',
+                type: 'phone',
+                value: phone,
+                map_to: 'phone_number',
+              },
+              field_field_1795086533496_yooyh: {
+                label: 'Email Address',
+                type: 'email',
+                value: email,
+                map_to: 'email',
+              },
+              field_field_1795086666198_g7es4: {
+                label: 'Class',
+                type: 'select',
+                value: cls,
+                map_to: 'class',
+              },
+            },
+          };
+
           try {
-            await fetch(APPSCRIPT_URL, {
+            await fetch(CRM_URL, {
               method: 'POST',
-              mode: 'no-cors' /* Apps Script requires no-cors */,
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                name,
-                email,
-                mobile: phone,
-                class: cls,
-                pageUrl: window.location.href,
-              }),
+              headers: {
+                'Content-Type': 'application/json',
+                'X-Api-Key': CRM_KEY,
+              },
+              body: JSON.stringify(payload),
             });
           } catch (_) {
-            /* no-cors fetch always resolves — network errors are silent */
+            /* network errors are silent — redirect regardless */
           }
 
           /* redirect to thank-you page with URL params */
